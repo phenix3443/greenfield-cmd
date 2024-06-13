@@ -70,7 +70,7 @@ $ gnfd-cmd object put --tags='[{"key":"key1","value":"value1"},{"key":"key2","va
 			&cli.BoolFlag{
 				Name:  resumableFlag,
 				Value: false,
-				Usage: "indicate whether need to enable resumeable upload. Resumable upload refers to the process of uploading " +
+				Usage: "indicate whether need to enable resumable upload. Resumable upload refers to the process of uploading " +
 					"a file in multiple parts, where each part is uploaded separately.This allows the upload to be resumed from " +
 					"where it left off in case of interruptions or failures, rather than starting the entire upload process from the beginning.",
 			},
