@@ -389,13 +389,13 @@ func putObject(ctx *cli.Context) error {
 			filePathList = append(filePathList, ctx.Args().Get(i))
 		}
 
-		var needUploadMutiFiles bool
+		var needUploadMultiFiles bool
 		if len(filePathList) > 1 {
-			needUploadMutiFiles = true
+			needUploadMultiFiles = true
 		}
 
 		// upload multiple files
-		if needUploadMutiFiles {
+		if needUploadMultiFiles {
 			urlInfo = ctx.Args().Get(argNum - 1)
 			bucketName = ParseBucket(urlInfo)
 			if bucketName == "" {
