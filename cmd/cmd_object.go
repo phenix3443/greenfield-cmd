@@ -127,7 +127,7 @@ $ gnfd-cmd object get gnfd://gnfd-bucket/gnfd-object  file.txt `,
 			&cli.BoolFlag{
 				Name:  resumableFlag,
 				Value: false,
-				Usage: "indicate whether need to enable resumeable download. Resumable download refers to the process of download " +
+				Usage: "indicate whether need to enable resumable download. Resumable download refers to the process of download " +
 					"a file in multiple parts, where each part is downloaded separately.This allows the download to be resumed from " +
 					"where it left off in case of interruptions or failures, rather than starting the entire download process from the beginning.",
 			},
@@ -693,20 +693,20 @@ func uploadFile(bucketName, objectName, filePath, urlInfo string, ctx *cli.Conte
 		}
 	}
 
-	visibity := ctx.Generic(visibilityFlag)
-	if visibity != "" {
-		visibityTypeVal, typeErr := getVisibilityType(fmt.Sprintf("%s", visibity))
+	visibility := ctx.Generic(visibilityFlag)
+	if visibility != "" {
+		visibilityTypeVal, typeErr := getVisibilityType(fmt.Sprintf("%s", visibility))
 		if typeErr != nil {
 			return typeErr
 		}
-		opts.Visibility = visibityTypeVal
+		opts.Visibility = visibilityTypeVal
 	}
 
 	// set second sp address if provided by user
 	if secondarySPAccs != "" {
-		secondarySplist := strings.Split(secondarySPAccs, ",")
-		addrList := make([]sdk.AccAddress, len(secondarySplist))
-		for idx, addr := range secondarySplist {
+		secondarySPList := strings.Split(secondarySPAccs, ",")
+		addrList := make([]sdk.AccAddress, len(secondarySPList))
+		for idx, addr := range secondarySPList {
 			addrList[idx] = sdk.MustAccAddressFromHex(addr)
 		}
 		opts.SecondarySPAccs = addrList
@@ -854,9 +854,9 @@ func uploadFileByTask(bucketName, objectName, filePath string, uploadFlag Upload
 
 	// set second sp address if provided by user
 	if uploadFlag.SecondarySP != "" {
-		secondarySplist := strings.Split(uploadFlag.SecondarySP, ",")
-		addrList := make([]sdk.AccAddress, len(secondarySplist))
-		for idx, addr := range secondarySplist {
+		secondarySPList := strings.Split(uploadFlag.SecondarySP, ",")
+		addrList := make([]sdk.AccAddress, len(secondarySPList))
+		for idx, addr := range secondarySPList {
 			addrList[idx] = sdk.MustAccAddressFromHex(addr)
 		}
 		opts.SecondarySPAccs = addrList
@@ -1176,7 +1176,7 @@ func updateObject(ctx *cli.Context) error {
 
 	visibility := ctx.Generic(visibilityFlag)
 	if visibility == "" {
-		return toCmdErr(fmt.Errorf("visibity must set to be updated"))
+		return toCmdErr(fmt.Errorf("visibility must set to be updated"))
 	}
 
 	visibilityType, typeErr := getVisibilityType(fmt.Sprintf("%s", visibility))
